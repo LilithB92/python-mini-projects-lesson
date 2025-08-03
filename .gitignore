@@ -154,10 +154,15 @@ venv.bak/
 # mkdocs documentation
 /site
 
+#poetry
+poetry.lock
+
+
 # mypy
 .mypy_cache/
 .dmypy.json
 dmypy.json
+
 
 # Pyre type checker
 .pyre/
@@ -201,3 +206,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+#tests
+tests/
