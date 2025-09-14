@@ -1,5 +1,6 @@
 import pytest
 
+from src.widget import get_date
 from src.widget import mask_account_card
 
 
@@ -31,3 +32,13 @@ def test_mask_account_card_some_sting(some_string: str) -> None:
 
 def test_mask_account_with_sting_number(string_with_number: str) -> None:
     assert mask_account_card(string_with_number) is None
+
+
+def test_get_data_invalid_string(some_string: str) -> None:
+    with pytest.raises(ValueError):
+        get_date(some_string)
+
+
+def test_get_date_invalid_empty() -> None:
+    with pytest.raises(ValueError):
+        get_date("")
