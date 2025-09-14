@@ -23,8 +23,3 @@ def get_mask_account(card_account: int) -> Optional[str]:
         card_account_str = str(card_account)
         return f"**{card_account_str[-4:]}"
     return None
-
-
-if __name__ == "__main__":
-    result_1 = get_mask_card_number(int(input("Enter: ")))
-    print(result_1)
