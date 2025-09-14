@@ -34,10 +34,3 @@ def get_date(date_str: str) -> str:
     datetime_object = datetime.strptime(date_str, format_with_time)
 
     return f"{datetime_object.day}.{datetime_object.month}.{datetime_object.year}"
-
-
-if __name__ == "__main__":
-    mask_account = mask_account_card(input("Enter: "))
-    formated_date = get_date(input("Enter: "))
-    print(mask_account)
-    print(formated_date)
