@@ -19,3 +19,8 @@ def long_number() -> int:
 @pytest.fixture
 def card_account() -> int:
     return 73654108430135874305  # входной аргумент
+
+
+
+
+

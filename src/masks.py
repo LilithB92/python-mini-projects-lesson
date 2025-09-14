@@ -1,4 +1,7 @@
-def get_mask_card_number(card_number: int) -> str:
+from typing import Optional
+
+
+def get_mask_card_number(card_number: int) -> Optional[str]:
     """
     Функция принимает на вход номер карты и возвращает ее маску.
     :param card_number: номер карты
@@ -7,11 +10,10 @@ def get_mask_card_number(card_number: int) -> str:
     if (len(str(card_number))) == 16:
         card_number_str = str(card_number)
         return f"{card_number_str[:4]} {card_number_str[4:6]}** **** {card_number_str[-4:]}"
-    else:
-        return "Please, enter the correct card_number"
+    return  None
 
 
-def get_mask_account(card_account: int) -> str:
+def get_mask_account(card_account: int) -> Optional[str]:
     """
     Функция принимает на вход номер счета в виде 20 значного числа и возвращает маску номера
     :param card_account: номер счета
@@ -20,8 +22,7 @@ def get_mask_account(card_account: int) -> str:
     if (len(str(card_account))) == 20:
         card_account_str = str(card_account)
         return f"**{card_account_str[-4:]}"
-    else:
-        return "Please, enter the correct card_account"
+    return None
 
 
 if __name__ == "__main__":

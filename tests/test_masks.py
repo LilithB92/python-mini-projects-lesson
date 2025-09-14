@@ -14,13 +14,13 @@ def test_get_mask_card_number_empty() -> None:
 
 
 def test_get_mask_card_account_short_number(short_number: int) -> None:
-    assert get_mask_card_number(short_number) == "Please, enter the correct card_number"
-    assert get_mask_account(short_number) == "Please, enter the correct card_account"
+    assert get_mask_card_number(short_number) is None
+    assert get_mask_account(short_number) is None
 
 
 def test_get_mask_card_account_longer_number(long_number: int) -> None:
-    assert get_mask_card_number(long_number) == "Please, enter the correct card_number"
-    assert get_mask_account(long_number) == "Please, enter the correct card_account"
+    assert get_mask_card_number(long_number) is None
+    assert get_mask_account(long_number) is None
 
 
 def test_get_correct_mask_account(card_account: int) -> None:
