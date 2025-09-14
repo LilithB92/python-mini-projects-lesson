@@ -1,24 +1,26 @@
 import re
 from datetime import datetime
+from typing import Optional
 
 from src.masks import get_mask_account
 from src.masks import get_mask_card_number
 
 
-def mask_account_card(card_number: str) -> str:
+def mask_account_card(card_number: str) -> Optional[str]:
     """
-  Функция замаскирует номер карты или счета
-    :param card_number:  номер карты или счета
-    :return: замаскированным номер карты или счета
+    Функция замаскирует номер карты или счета
+      :param card_number:  номер карты или счета
+      :return: замаскированным номер карты или счета
     """
     card_number_list = re.split(r"(\d+)", card_number)
     card_number_int = int(card_number_list[1])
-    if re.search("Счет", card_number):
-        mask_number = get_mask_account(card_number_int)
-    else:
-        mask_number = get_mask_card_number(card_number_int)
-
-    return f"{card_number_list[0]}{mask_number}"
+    if get_mask_account(card_number_int) or get_mask_card_number(card_number_int):
+        if re.search("Счет", card_number):
+            mask_number = get_mask_account(card_number_int)
+        else:
+            mask_number = get_mask_card_number(card_number_int)
+        return f"{card_number_list[0]}{mask_number}"
+    return None
 
 
 def get_date(date_str: str) -> str:
@@ -33,8 +35,9 @@ def get_date(date_str: str) -> str:
 
     return f"{datetime_object.day}.{datetime_object.month}.{datetime_object.year}"
 
+
 if __name__ == "__main__":
-    result_1 = mask_account_card(int(input("Enter: ")))
-    print(result_1)
-
-
+    mask_account = mask_account_card(input("Enter: "))
+    formated_date = get_date(input("Enter: "))
+    print(mask_account)
+    print(formated_date)

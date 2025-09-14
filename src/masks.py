@@ -10,7 +10,7 @@ def get_mask_card_number(card_number: int) -> Optional[str]:
     if (len(str(card_number))) == 16:
         card_number_str = str(card_number)
         return f"{card_number_str[:4]} {card_number_str[4:6]}** **** {card_number_str[-4:]}"
-    return  None
+    return None
 
 
 def get_mask_account(card_account: int) -> Optional[str]:
