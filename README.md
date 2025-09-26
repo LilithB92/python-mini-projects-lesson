@@ -14,6 +14,13 @@ git clone https://github.com/LilithB92/python-mini-projects-lesson.git
 pip install -r requirements.txt
 ```
 
+## Тестирование
+Для интеграции анализа покрытия кода с pytest используется плагин pytest-cov. Этот плагин использует cover.py для измерения процента кода, выполненного тестами. Для их запуска выполните команду:
+```
+ poetry run pytest --cov
+```
+
+
 ## Документация:
 
 Дополнительную информацию о структуре проекта можно найти в [документации](README.md).
