@@ -1,4 +1,7 @@
+import pytest
+
 from src.generators import filter_by_currency
+from src.generators import transaction_descriptions
 
 
 def test_filter_transaction_by_currency(transactions_list: list) -> None:
@@ -21,3 +24,21 @@ def test_filter_transaction_by_currency(transactions_list: list) -> None:
         "from": "Счет 19708645243227258542",
         "to": "Счет 75651667383060284188",
     }
+
+    with pytest.raises(StopIteration):
+        next(each_transaction)
+
+
+def test_transaction_descriptions(transactions_list: list) -> None:
+    description = transaction_descriptions(transactions_list)
+    assert next(description) == "Перевод организации"
+    assert next(description) == "Перевод организации"
+    assert next(description) == "Перевод со счета на счет"
+
+    with pytest.raises(StopIteration):
+        next(description)
+
+
+def test_transaction_descriptions_without_description() -> None:
+    with pytest.raises(KeyError):
+        next(transaction_descriptions([{}]))

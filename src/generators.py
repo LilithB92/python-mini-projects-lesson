@@ -17,3 +17,15 @@ def filter_by_currency(transactions: list[dict], currency: str) -> Generator[dic
     )
     for transaction in filtered_trans:
         yield transaction
+
+
+def transaction_descriptions(transactions: list[dict]) -> Generator[str, None]:
+    """
+    Функция принимает список словарей с транзакциями и возвращает описание каждой операции по очереди
+
+    :param transactions: Список словарей, представляющих транзакции
+    :return: описание каждой операции по очереди
+    """
+    descriptions = [trans["description"] for trans in transactions if trans["description"]]
+    for description in descriptions:
+        yield description
