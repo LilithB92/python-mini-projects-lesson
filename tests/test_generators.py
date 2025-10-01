@@ -1,5 +1,6 @@
 import pytest
 
+from src.generators import card_number_generator
 from src.generators import filter_by_currency
 from src.generators import transaction_descriptions
 
@@ -25,6 +26,11 @@ def test_filter_transaction_by_currency(transactions_list: list) -> None:
         "to": "Счет 75651667383060284188",
     }
 
+
+def test_filter_invalid(transactions_list: list) -> None:
+    each_transaction = filter_by_currency(transactions_list, "USD")
+    next(each_transaction)
+    next(each_transaction)
     with pytest.raises(StopIteration):
         next(each_transaction)
 
@@ -42,3 +48,31 @@ def test_transaction_descriptions(transactions_list: list) -> None:
 def test_transaction_descriptions_without_description() -> None:
     with pytest.raises(KeyError):
         next(transaction_descriptions([{}]))
+
+
+def test_card_number_generator() -> None:
+    card_number = card_number_generator(1, 5)
+    assert next(card_number) == "0000 0000 0000 0001"
+    assert next(card_number) == "0000 0000 0000 0002"
+    assert next(card_number) == "0000 0000 0000 0003"
+    assert next(card_number) == "0000 0000 0000 0004"
+    assert next(card_number) == "0000 0000 0000 0005"
+
+    with pytest.raises(StopIteration):
+        next(card_number)
+
+
+@pytest.mark.parametrize(
+    "start,stop,expected",
+    [
+        (7, 8, "0000 0000 0000 0007"),
+        (2, 4, "0000 0000 0000 0002"),
+    ],
+)
+def test_card_number_generator_in_one_assertion(start: int, stop: int, expected: str) -> None:
+    assert next(card_number_generator(start, stop)) == expected
+
+
+def test_card_number_generator_invalid_start_bigger() -> None:
+    with pytest.raises(StopIteration):
+        next(card_number_generator(5, 1))
