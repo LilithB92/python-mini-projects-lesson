@@ -19,6 +19,24 @@ pip install -r requirements.txt
 ```
  poetry run pytest --cov
 ```
+# generatorsМодул
+
+ Используется в банковских проектах.
+
+## Описание
+
+Модул используется для генерированья номер банковских карт. Он может поочередно выдать транзакции, 
+где валюта операции соответствует заданной (например, USD).
+
+# Пример для модуля generators
+from src.generators import card_number_generator
+
+for card_number in card_number_generator(1, 5):
+    print(card_number)#output   '0000 0000 0000 0001'
+                                '0000 0000 0000 0002'
+                                '0000 0000 0000 0003'
+                                '0000 0000 0000 0004'
+                                '0000 0000 0000 0005'
 
 
 ## Документация:
