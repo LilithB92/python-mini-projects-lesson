@@ -7,6 +7,12 @@ from typing import Union
 
 
 def log(filename: Union[str | None] = None) -> Callable[..., Any]:
+    """
+    Декоратор может логировать работу функции и ее результат как в файл, так и в консоль.
+
+    :param filename: Название файла, где регистрирует детали выполнения функций
+    :return:  написание логи (в файл или в консоль) и результат функции(если функция не выдает ошибки)
+    """
     def wrapper(func: Callable[..., Any]) -> Callable[..., Any]:
         @wraps(func)
         def inner(*args: Any, **kwargs: Any) -> Any:
