@@ -21,7 +21,7 @@ def amount_converter_to_rub(transaction: dict) -> Any:
         currency = transaction["operationAmount"]["currency"]["code"]
         amount = transaction["operationAmount"]["amount"]
         if currency == "RUB":
-            return amount
+            return float(amount)
         else:
             url = "https://api.apilayer.com/exchangerates_data/convert"
             headers = {"apikey": api_key}
@@ -30,5 +30,5 @@ def amount_converter_to_rub(transaction: dict) -> Any:
             if response.status_code == 200:
                 return round(response.json()["result"], 2)
         return None
-    except (JSONDecodeError, TypeError, KeyError, ValueError):
+    except (JSONDecodeError, TypeError, KeyError, ValueError, AssertionError):
         return None
