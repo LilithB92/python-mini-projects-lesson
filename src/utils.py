@@ -3,9 +3,10 @@ import os
 from json import JSONDecodeError
 
 
-def json_reader(filename: str) -> list:
+def read_json(filename: str) -> list:
     """
     Функция принимает на вход путь до JSON-файла и возвращает список словарей с данными о финансовых транзакциях.
+
 
     :param filename: Путь до JSON-файла
     :return: возвращает список словарей с данными о финансовых транзакциях или пустой список
@@ -18,13 +19,9 @@ def json_reader(filename: str) -> list:
                 data = json.load(f)
                 if isinstance(data, list):
                     return data
-                return []
-            except (JSONDecodeError, TypeError, KeyError, ValueError):
+                else:
+                    return []
+            except (JSONDecodeError,):
                 return []
     except FileNotFoundError:
         return []
-
-
-
-
-
