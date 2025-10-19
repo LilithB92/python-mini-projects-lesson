@@ -1,9 +1,10 @@
 import json
 import os
 from json import JSONDecodeError
+from typing import Any
 
 
-def read_json(filename: str) -> list:
+def read_json(filename: str) -> Any:
     """
     Функция принимает на вход путь до JSON-файла и возвращает список словарей с данными о финансовых транзакциях.
 
@@ -16,12 +17,11 @@ def read_json(filename: str) -> list:
     try:
         with open(json_path, "r", encoding="utf-8") as f:
             try:
-                data = json.load(f)
-                if isinstance(data, list):
-                    return data
-                else:
-                    return []
-            except (JSONDecodeError,):
+                return json.load(f)
+            except (AssertionError, JSONDecodeError):
                 return []
     except FileNotFoundError:
         return []
+
+
+print(read_json("operations"))
