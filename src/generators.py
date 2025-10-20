@@ -46,5 +46,5 @@ def card_number_generator(start: int, stop: int) -> Generator[str, None]:
         for card_number in card_numbers:
             formated_card_number = ""
             for i in range(0, 16, 4):
-                formated_card_number += card_number[i: i + 4] + " "
+                formated_card_number += card_number[i : i + 4] + " "
             yield formated_card_number.rstrip()
