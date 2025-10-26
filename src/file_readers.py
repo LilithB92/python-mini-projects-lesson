@@ -16,10 +16,7 @@ def csv_reader(filename: str) -> list[dict[Any, Any]]:
     csv_file = os.path.join(project_path, "data", filename + ".csv")
     try:
         csv_data = pd.read_csv(csv_file, encoding="utf-8", sep=";")
-        try:
-            return csv_data.to_dict(orient="records")
-        except (AttributeError, ValueError, TypeError):
-            return [{}]
+        return csv_data.to_dict(orient="records")
     except FileNotFoundError:
         return [{}]
 
@@ -34,14 +31,6 @@ def excel_reader(filename: str) -> list[dict[Any, Any]]:
     excel_file = os.path.join(project_path, "data", filename + ".xlsx")
     try:
         excel_data = pd.read_excel(excel_file)
-        try:
-            return excel_data.to_dict(orient="records")
-        except (AttributeError, ValueError, TypeError):
-            return [{}]
+        return excel_data.to_dict(orient="records")
     except FileNotFoundError:
         return [{}]
-
-
-if __name__ == "__main__":
-    print(csv_reader("djs"))
-    print(excel_reader("fs"))
