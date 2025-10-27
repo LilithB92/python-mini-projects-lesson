@@ -13,10 +13,10 @@ def test_amount_convert_to_rub(transaction: dict) -> None:
 def test_amount_convert_none() -> None:
     with pytest.raises(AssertionError):
         assert amount_converter_to_rub(
-                {
-                    "id": 441945886,
-                    "state": "EXECUTED",
-                }
+            {
+                "id": 441945886,
+                "state": "EXECUTED",
+            }
         )
 
 
