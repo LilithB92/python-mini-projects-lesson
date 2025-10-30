@@ -34,3 +34,7 @@ def excel_reader(filename: str) -> list[dict[Any, Any]]:
         return excel_data.to_dict(orient="records")
     except FileNotFoundError:
         return [{}]
+
+
+# if __name__ == "__main__":
+#     print(csv_reader('transactions'))
