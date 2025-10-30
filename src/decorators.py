@@ -1,6 +1,7 @@
 import os
 from datetime import datetime
 from functools import wraps
+from pathlib import Path
 from typing import Any
 from typing import Callable
 from typing import Union
@@ -28,7 +29,7 @@ def log(filename: Union[str | None] = None) -> Callable[..., Any]:
                 func_message += f"{func.__name__} error: {exception_type}. Inputs: {args}, {kwargs}"
             finally:
                 if filename:
-                    directory_name = os.path.split(os.getcwd())[0]
+                    directory_name = Path(__file__).resolve().parent.parent
                     log_dir = os.path.join(directory_name, "data")
                     if not os.path.exists(log_dir):
                         os.makedirs(log_dir)

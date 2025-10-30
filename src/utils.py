@@ -2,10 +2,12 @@ import json
 import logging
 import os
 from json import JSONDecodeError
+from pathlib import Path
 from typing import Any
 
-directory_name = os.path.split(os.getcwd())[0]
+directory_name = Path(__file__).resolve().parent.parent
 log_path = os.path.join(directory_name, "logs", "utils.log")
+
 
 logging.basicConfig(
     filename=log_path,

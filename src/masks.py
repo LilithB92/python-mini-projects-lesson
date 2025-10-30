@@ -1,8 +1,9 @@
 import logging
 import os
+from pathlib import Path
 from typing import Optional
 
-directory_name = os.path.split(os.getcwd())[0]
+directory_name = Path(__file__).resolve().parent.parent
 log_path = os.path.join(directory_name, "logs", "masks.log")
 
 logging.basicConfig(
